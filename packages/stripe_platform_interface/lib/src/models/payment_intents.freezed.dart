@@ -49,6 +49,7 @@ mixin _$PaymentIntent {
       throw _privateConstructorUsedError;
 
   /// Id of the payment method used in this intent.
+  @JsonKey(name: 'payment_method')
   String? get paymentMethodId => throw _privateConstructorUsedError;
 
   /// Localized description that provides additional context to users.
@@ -89,7 +90,7 @@ abstract class $PaymentIntentCopyWith<$Res> {
       bool livemode,
       CaptureMethod captureMethod,
       ConfirmationMethod confirmationMethod,
-      String? paymentMethodId,
+      @JsonKey(name: 'payment_method') String? paymentMethodId,
       String? description,
       String? receiptEmail,
       String? canceledAt,
@@ -236,7 +237,7 @@ abstract class _$$_PaymentIntentCopyWith<$Res>
       bool livemode,
       CaptureMethod captureMethod,
       ConfirmationMethod confirmationMethod,
-      String? paymentMethodId,
+      @JsonKey(name: 'payment_method') String? paymentMethodId,
       String? description,
       String? receiptEmail,
       String? canceledAt,
@@ -355,7 +356,7 @@ class _$_PaymentIntent implements _PaymentIntent {
       required this.livemode,
       required this.captureMethod,
       required this.confirmationMethod,
-      this.paymentMethodId,
+      @JsonKey(name: 'payment_method') this.paymentMethodId,
       this.description,
       this.receiptEmail,
       this.canceledAt,
@@ -403,6 +404,7 @@ class _$_PaymentIntent implements _PaymentIntent {
 
   /// Id of the payment method used in this intent.
   @override
+  @JsonKey(name: 'payment_method')
   final String? paymentMethodId;
 
   /// Localized description that provides additional context to users.
@@ -509,7 +511,7 @@ abstract class _PaymentIntent implements PaymentIntent {
       required final bool livemode,
       required final CaptureMethod captureMethod,
       required final ConfirmationMethod confirmationMethod,
-      final String? paymentMethodId,
+      @JsonKey(name: 'payment_method') final String? paymentMethodId,
       final String? description,
       final String? receiptEmail,
       final String? canceledAt,
@@ -558,6 +560,7 @@ abstract class _PaymentIntent implements PaymentIntent {
   @override
 
   /// Id of the payment method used in this intent.
+  @JsonKey(name: 'payment_method')
   String? get paymentMethodId;
   @override
 

@@ -1,7 +1,7 @@
 name: stripe_example
 description: Demonstrates how to use the stripe plugin.
-version: 1.0.0
-publish_to: 'none'
+version: 1.0.1
+publish_to: "none"
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -10,14 +10,28 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_stripe: ^8.0.0+1
-  flutter_stripe_web: ^3.0.0
-  stripe_checkout: ^1.0.0
+  # flutter_stripe: ^8.0.0+1
+  flutter_stripe:
+    git:
+      url: git@github.com:KyoheiNakamura/flutter_stripe.git
+      path: packages/flutter_stripe
+      version: ^8.0.0+1
+  # flutter_stripe_web: ^3.0.0
+  flutter_stripe_web:
+    git:
+      url: git@github.com:KyoheiNakamura/flutter_stripe.git
+      path: packages/flutter_stripe_web
+      version: ^3.0.0
+  # stripe_checkout: ^1.0.0
+  stripe_checkout:
+    git:
+      url: git@github.com:KyoheiNakamura/flutter_stripe.git
+      path: packages/stripe_checkout
+      version: ^1.0.0
   pay: ^1.1.0
   http: ^0.13.1
   font_awesome_flutter: ^9.2.0
   platform: ^3.0.0
-
 
 dev_dependencies:
   integration_test:

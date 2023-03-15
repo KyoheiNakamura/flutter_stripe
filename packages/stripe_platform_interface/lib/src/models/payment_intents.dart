@@ -44,7 +44,7 @@ class PaymentIntent with _$PaymentIntent {
     required ConfirmationMethod confirmationMethod,
 
     /// Id of the payment method used in this intent.
-    String? paymentMethodId,
+    @JsonKey(name: 'payment_method') String? paymentMethodId,
 
     /// Localized description that provides additional context to users.
     String? description,
