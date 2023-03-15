@@ -1,5 +1,5 @@
-import 'package:stripe_platform_interface/stripe_platform_interface.dart';
 import 'package:stripe_js/stripe_api.dart' as js;
+import 'package:stripe_platform_interface/stripe_platform_interface.dart';
 
 extension PaymentIntentExtension on js.PaymentIntent {
   PaymentIntent parse() {
@@ -11,11 +11,13 @@ extension PaymentIntentExtension on js.PaymentIntent {
       status: PaymentIntentsStatusExtension.parse(status.name),
       clientSecret: clientSecret,
       livemode: livemode,
-      //paymentMethodId: payment_method,
       captureMethod: CaptureMethodExtension.parse(captureMethod.name),
       confirmationMethod:
           ConfirmationMethodExtension.parse(confirmationMethod.name),
-//
+      paymentMethodId: paymentMethod,
+      paymentMethodTypes: paymentMethodTypes
+          .map((type) => PaymentMethodTypeExtension.parse(type.name))
+          .toList(),
       description: description,
       // receiptEmail: receipt_email,
       canceledAt: canceledAt?.toString(),
@@ -82,6 +84,18 @@ extension ConfirmationMethodExtension on ConfirmationMethod {
         return ConfirmationMethod.Manual;
     }
     throw '$value is not a valid confirmation method';
+  }
+}
+
+extension PaymentMethodTypeExtension on PaymentMethodType {
+  static PaymentMethodType parse(String value) {
+    switch (value) {
+      case 'Card':
+      case 'card':
+        return PaymentMethodType.Card;
+      default:
+        return PaymentMethodType.Unknown;
+    }
   }
 }
 
