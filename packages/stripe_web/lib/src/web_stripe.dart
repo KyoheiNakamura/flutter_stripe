@@ -97,11 +97,18 @@ class WebStripe extends StripePlatform {
     final response =
         await params!.maybeWhen<Future<stripe_js.PaymentIntentResponse>>(
       card: (usage) {
+        final billingDetails = stripe_js.BillingDetails(
+          name: usage.billingDetails?.name,
+          email: usage.billingDetails?.email,
+        );
         return js.confirmCardPayment(
           paymentIntentClientSecret,
           data: stripe_js.ConfirmCardPaymentData(
             paymentMethod: stripe_js.PaymentMethodRef.details(
-              stripe_js.CardPaymentMethodDetails(card: element!),
+              stripe_js.CardPaymentMethodDetails(
+                card: element!,
+                billingDetails: billingDetails,
+              ),
             ),
             setupFutureUsage: (options?.setupFutureUsage ??
                     PaymentIntentsFutureUsage.OnSession)
