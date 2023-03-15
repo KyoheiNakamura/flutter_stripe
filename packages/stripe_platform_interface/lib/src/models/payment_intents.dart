@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'address.dart';
 import 'next_action.dart';
+import 'payment_methods.dart';
 
 part 'payment_intents.freezed.dart';
 part 'payment_intents.g.dart';
@@ -43,8 +44,12 @@ class PaymentIntent with _$PaymentIntent {
     /// Method of how the payment will be confirmed.
     required ConfirmationMethod confirmationMethod,
 
+    /// The list of payment method types (e.g. card) that this PaymentIntent
+    /// is allowed to use.
+    @Default([]) List<PaymentMethodType> paymentMethodTypes,
+
     /// Id of the payment method used in this intent.
-    @JsonKey(name: 'payment_method') String? paymentMethodId,
+    String? paymentMethodId,
 
     /// Localized description that provides additional context to users.
     String? description,

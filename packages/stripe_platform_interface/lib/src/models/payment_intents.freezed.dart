@@ -48,8 +48,12 @@ mixin _$PaymentIntent {
   ConfirmationMethod get confirmationMethod =>
       throw _privateConstructorUsedError;
 
+  /// The list of payment method types (e.g. card) that this PaymentIntent
+  /// is allowed to use.
+  List<PaymentMethodType> get paymentMethodTypes =>
+      throw _privateConstructorUsedError;
+
   /// Id of the payment method used in this intent.
-  @JsonKey(name: 'payment_method')
   String? get paymentMethodId => throw _privateConstructorUsedError;
 
   /// Localized description that provides additional context to users.
@@ -90,7 +94,8 @@ abstract class $PaymentIntentCopyWith<$Res> {
       bool livemode,
       CaptureMethod captureMethod,
       ConfirmationMethod confirmationMethod,
-      @JsonKey(name: 'payment_method') String? paymentMethodId,
+      List<PaymentMethodType> paymentMethodTypes,
+      String? paymentMethodId,
       String? description,
       String? receiptEmail,
       String? canceledAt,
@@ -123,6 +128,7 @@ class _$PaymentIntentCopyWithImpl<$Res, $Val extends PaymentIntent>
     Object? livemode = null,
     Object? captureMethod = null,
     Object? confirmationMethod = null,
+    Object? paymentMethodTypes = null,
     Object? paymentMethodId = freezed,
     Object? description = freezed,
     Object? receiptEmail = freezed,
@@ -167,6 +173,10 @@ class _$PaymentIntentCopyWithImpl<$Res, $Val extends PaymentIntent>
           ? _value.confirmationMethod
           : confirmationMethod // ignore: cast_nullable_to_non_nullable
               as ConfirmationMethod,
+      paymentMethodTypes: null == paymentMethodTypes
+          ? _value.paymentMethodTypes
+          : paymentMethodTypes // ignore: cast_nullable_to_non_nullable
+              as List<PaymentMethodType>,
       paymentMethodId: freezed == paymentMethodId
           ? _value.paymentMethodId
           : paymentMethodId // ignore: cast_nullable_to_non_nullable
@@ -237,7 +247,8 @@ abstract class _$$_PaymentIntentCopyWith<$Res>
       bool livemode,
       CaptureMethod captureMethod,
       ConfirmationMethod confirmationMethod,
-      @JsonKey(name: 'payment_method') String? paymentMethodId,
+      List<PaymentMethodType> paymentMethodTypes,
+      String? paymentMethodId,
       String? description,
       String? receiptEmail,
       String? canceledAt,
@@ -270,6 +281,7 @@ class __$$_PaymentIntentCopyWithImpl<$Res>
     Object? livemode = null,
     Object? captureMethod = null,
     Object? confirmationMethod = null,
+    Object? paymentMethodTypes = null,
     Object? paymentMethodId = freezed,
     Object? description = freezed,
     Object? receiptEmail = freezed,
@@ -314,6 +326,10 @@ class __$$_PaymentIntentCopyWithImpl<$Res>
           ? _value.confirmationMethod
           : confirmationMethod // ignore: cast_nullable_to_non_nullable
               as ConfirmationMethod,
+      paymentMethodTypes: null == paymentMethodTypes
+          ? _value._paymentMethodTypes
+          : paymentMethodTypes // ignore: cast_nullable_to_non_nullable
+              as List<PaymentMethodType>,
       paymentMethodId: freezed == paymentMethodId
           ? _value.paymentMethodId
           : paymentMethodId // ignore: cast_nullable_to_non_nullable
@@ -356,12 +372,14 @@ class _$_PaymentIntent implements _PaymentIntent {
       required this.livemode,
       required this.captureMethod,
       required this.confirmationMethod,
-      @JsonKey(name: 'payment_method') this.paymentMethodId,
+      final List<PaymentMethodType> paymentMethodTypes = const [],
+      this.paymentMethodId,
       this.description,
       this.receiptEmail,
       this.canceledAt,
       this.nextAction,
-      this.shipping});
+      this.shipping})
+      : _paymentMethodTypes = paymentMethodTypes;
 
   factory _$_PaymentIntent.fromJson(Map<String, dynamic> json) =>
       _$$_PaymentIntentFromJson(json);
@@ -402,9 +420,23 @@ class _$_PaymentIntent implements _PaymentIntent {
   @override
   final ConfirmationMethod confirmationMethod;
 
+  /// The list of payment method types (e.g. card) that this PaymentIntent
+  /// is allowed to use.
+  final List<PaymentMethodType> _paymentMethodTypes;
+
+  /// The list of payment method types (e.g. card) that this PaymentIntent
+  /// is allowed to use.
+  @override
+  @JsonKey()
+  List<PaymentMethodType> get paymentMethodTypes {
+    if (_paymentMethodTypes is EqualUnmodifiableListView)
+      return _paymentMethodTypes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_paymentMethodTypes);
+  }
+
   /// Id of the payment method used in this intent.
   @override
-  @JsonKey(name: 'payment_method')
   final String? paymentMethodId;
 
   /// Localized description that provides additional context to users.
@@ -430,7 +462,7 @@ class _$_PaymentIntent implements _PaymentIntent {
 
   @override
   String toString() {
-    return 'PaymentIntent(id: $id, amount: $amount, created: $created, currency: $currency, status: $status, clientSecret: $clientSecret, livemode: $livemode, captureMethod: $captureMethod, confirmationMethod: $confirmationMethod, paymentMethodId: $paymentMethodId, description: $description, receiptEmail: $receiptEmail, canceledAt: $canceledAt, nextAction: $nextAction, shipping: $shipping)';
+    return 'PaymentIntent(id: $id, amount: $amount, created: $created, currency: $currency, status: $status, clientSecret: $clientSecret, livemode: $livemode, captureMethod: $captureMethod, confirmationMethod: $confirmationMethod, paymentMethodTypes: $paymentMethodTypes, paymentMethodId: $paymentMethodId, description: $description, receiptEmail: $receiptEmail, canceledAt: $canceledAt, nextAction: $nextAction, shipping: $shipping)';
   }
 
   @override
@@ -452,6 +484,8 @@ class _$_PaymentIntent implements _PaymentIntent {
                 other.captureMethod == captureMethod) &&
             (identical(other.confirmationMethod, confirmationMethod) ||
                 other.confirmationMethod == confirmationMethod) &&
+            const DeepCollectionEquality()
+                .equals(other._paymentMethodTypes, _paymentMethodTypes) &&
             (identical(other.paymentMethodId, paymentMethodId) ||
                 other.paymentMethodId == paymentMethodId) &&
             (identical(other.description, description) ||
@@ -479,6 +513,7 @@ class _$_PaymentIntent implements _PaymentIntent {
       livemode,
       captureMethod,
       confirmationMethod,
+      const DeepCollectionEquality().hash(_paymentMethodTypes),
       paymentMethodId,
       description,
       receiptEmail,
@@ -511,7 +546,8 @@ abstract class _PaymentIntent implements PaymentIntent {
       required final bool livemode,
       required final CaptureMethod captureMethod,
       required final ConfirmationMethod confirmationMethod,
-      @JsonKey(name: 'payment_method') final String? paymentMethodId,
+      final List<PaymentMethodType> paymentMethodTypes,
+      final String? paymentMethodId,
       final String? description,
       final String? receiptEmail,
       final String? canceledAt,
@@ -559,8 +595,12 @@ abstract class _PaymentIntent implements PaymentIntent {
   ConfirmationMethod get confirmationMethod;
   @override
 
+  /// The list of payment method types (e.g. card) that this PaymentIntent
+  /// is allowed to use.
+  List<PaymentMethodType> get paymentMethodTypes;
+  @override
+
   /// Id of the payment method used in this intent.
-  @JsonKey(name: 'payment_method')
   String? get paymentMethodId;
   @override
 

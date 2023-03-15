@@ -1,6 +1,7 @@
 import 'package:js/js.dart';
 import 'package:stripe_js/stripe_api.dart';
 import 'package:stripe_js/stripe_js.dart';
+
 import '../utils/utils.dart';
 
 extension ExtensionCardPayment on Stripe {
@@ -28,7 +29,6 @@ extension ExtensionCardPayment on Stripe {
     ConfirmCardPaymentData? data,
     ConfirmCardPaymentOptions? options,
   }) {
-    print(data?.toJson());
     final jsData = jsify(data?.toJson() ?? {});
     final jsOptions = jsify(options?.toJson() ?? {});
     return parseIntentResponse(
