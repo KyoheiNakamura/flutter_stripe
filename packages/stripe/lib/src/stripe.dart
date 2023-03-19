@@ -415,14 +415,14 @@ class Stripe {
   ///
   /// Throws a [StripeException] when confirming the setupintent fails.
   Future<SetupIntent> confirmSetupIntent({
-    required String paymentIntentClientSecret,
+    required String setupIntentClientSecret,
     required PaymentMethodParams params,
     PaymentMethodOptions? options,
   }) async {
     await _awaitForSettings();
     try {
       final setupIntent = await _platform.confirmSetupIntent(
-          paymentIntentClientSecret, params, options);
+          setupIntentClientSecret, params, options);
       return setupIntent;
     } on StripeException {
       rethrow;
