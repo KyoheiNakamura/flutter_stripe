@@ -1,21 +1,22 @@
-import 'package:stripe_platform_interface/stripe_platform_interface.dart';
+import 'package:flutter_stripe_web/src/parser/payment_intent.dart';
 import 'package:stripe_js/stripe_api.dart' as js;
+import 'package:stripe_platform_interface/stripe_platform_interface.dart';
 
 extension SetupIntentExtension on js.SetupIntent {
   SetupIntent parse() {
-    throw UnimplementedError();
-    // TODO(jaime) : Add support for setup intents
-    // ignore: dead_code
     return SetupIntent(
       id: id,
       created: created.toString(),
-      status: '',
+      status: status.name,
       clientSecret: clientSecret,
       livemode: livemode,
       paymentMethodId: paymentMethod!,
       description: description,
       // LastPaymentError? lastPaymentError,
-      usage: '', paymentMethodTypes: [],
+      usage: usage.name,
+      paymentMethodTypes: paymentMethodTypes
+          .map((type) => PaymentMethodTypeExtension.parse(type.name))
+          .toList(),
     );
   }
 }
