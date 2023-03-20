@@ -4,6 +4,13 @@ import 'package:stripe_js/stripe_api.dart';
 part 'confirm_card_setup_data.freezed.dart';
 part 'confirm_card_setup_data.g.dart';
 
+class CardPaymentMethodRefConverter
+    extends PaymentMethodRefConverter<CardPaymentMethodDetails> {
+  const CardPaymentMethodRefConverter();
+}
+
+typedef CardPaymentMethodRef = PaymentMethodRef<CardPaymentMethodDetails>;
+
 @freezed
 class ConfirmCardSetupData with _$ConfirmCardSetupData {
   const factory ConfirmCardSetupData({
@@ -11,8 +18,8 @@ class ConfirmCardSetupData with _$ConfirmCardSetupData {
     /// data to create a PaymentMethod with.
     /// See the use case sections below for details.
     @JsonKey(name: "payment_method")
-    @PaymentMethodRefConverter()
-        PaymentMethodRef<CardPaymentMethodDetails>? paymentMethod,
+    @CardPaymentMethodRefConverter()
+        CardPaymentMethodRef? paymentMethod,
 
     /// If you are handling next actions yourself, pass in a return_url.
     /// If the subsequent action is redirect_to_url,
