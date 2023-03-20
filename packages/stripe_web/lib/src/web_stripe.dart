@@ -189,11 +189,18 @@ class WebStripe extends StripePlatform {
   ) async {
     final response = await data
         .maybeWhen<Future<stripe_js.SetupIntentResponse>>(card: (usage) {
+      final billingDetails = stripe_js.BillingDetails(
+        name: usage.billingDetails?.name,
+        email: usage.billingDetails?.email,
+      );
       return js.confirmCardSetup(
         setupIntentClientSecret,
         data: stripe_js.ConfirmCardSetupData(
           paymentMethod: stripe_js.$expanded(
-            stripe_js.CardPaymentMethodDetails(card: element!),
+            stripe_js.CardPaymentMethodDetails(
+              card: element!,
+              billingDetails: billingDetails,
+            ),
           ),
           // shipping: billing?.toJs()
           // TODO: Implement return_url for web
