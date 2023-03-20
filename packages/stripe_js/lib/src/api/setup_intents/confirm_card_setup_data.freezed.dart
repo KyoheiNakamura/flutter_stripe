@@ -23,6 +23,7 @@ mixin _$ConfirmCardSetupData {
   /// Either the id of an existing PaymentMethod, or an object containing
   /// data to create a PaymentMethod with.
   /// See the use case sections below for details.
+  @JsonKey(name: "payment_method")
   @PaymentMethodRefConverter()
   PaymentMethodRef<CardPaymentMethodDetails>? get paymentMethod =>
       throw _privateConstructorUsedError;
@@ -46,7 +47,8 @@ abstract class $ConfirmCardSetupDataCopyWith<$Res> {
       _$ConfirmCardSetupDataCopyWithImpl<$Res, ConfirmCardSetupData>;
   @useResult
   $Res call(
-      {@PaymentMethodRefConverter()
+      {@JsonKey(name: "payment_method")
+      @PaymentMethodRefConverter()
           PaymentMethodRef<CardPaymentMethodDetails>? paymentMethod,
       @JsonKey(name: "return_url")
           String? returnUrl});
@@ -106,7 +108,8 @@ abstract class _$$_ConfirmCardSetupDataCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@PaymentMethodRefConverter()
+      {@JsonKey(name: "payment_method")
+      @PaymentMethodRefConverter()
           PaymentMethodRef<CardPaymentMethodDetails>? paymentMethod,
       @JsonKey(name: "return_url")
           String? returnUrl});
@@ -146,8 +149,11 @@ class __$$_ConfirmCardSetupDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ConfirmCardSetupData implements _ConfirmCardSetupData {
   const _$_ConfirmCardSetupData(
-      {@PaymentMethodRefConverter() this.paymentMethod,
-      @JsonKey(name: "return_url") this.returnUrl});
+      {@JsonKey(name: "payment_method")
+      @PaymentMethodRefConverter()
+          this.paymentMethod,
+      @JsonKey(name: "return_url")
+          this.returnUrl});
 
   factory _$_ConfirmCardSetupData.fromJson(Map<String, dynamic> json) =>
       _$$_ConfirmCardSetupDataFromJson(json);
@@ -156,6 +162,7 @@ class _$_ConfirmCardSetupData implements _ConfirmCardSetupData {
   /// data to create a PaymentMethod with.
   /// See the use case sections below for details.
   @override
+  @JsonKey(name: "payment_method")
   @PaymentMethodRefConverter()
   final PaymentMethodRef<CardPaymentMethodDetails>? paymentMethod;
 
@@ -203,7 +210,8 @@ class _$_ConfirmCardSetupData implements _ConfirmCardSetupData {
 
 abstract class _ConfirmCardSetupData implements ConfirmCardSetupData {
   const factory _ConfirmCardSetupData(
-      {@PaymentMethodRefConverter()
+      {@JsonKey(name: "payment_method")
+      @PaymentMethodRefConverter()
           final PaymentMethodRef<CardPaymentMethodDetails>? paymentMethod,
       @JsonKey(name: "return_url")
           final String? returnUrl}) = _$_ConfirmCardSetupData;
@@ -216,6 +224,7 @@ abstract class _ConfirmCardSetupData implements ConfirmCardSetupData {
   /// Either the id of an existing PaymentMethod, or an object containing
   /// data to create a PaymentMethod with.
   /// See the use case sections below for details.
+  @JsonKey(name: "payment_method")
   @PaymentMethodRefConverter()
   PaymentMethodRef<CardPaymentMethodDetails>? get paymentMethod;
   @override
