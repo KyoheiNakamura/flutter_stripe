@@ -1,5 +1,5 @@
-import 'package:stripe_js/stripe_api.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:stripe_js/stripe_api.dart';
 
 part 'confirm_card_setup_data.freezed.dart';
 part 'confirm_card_setup_data.g.dart';
@@ -10,6 +10,7 @@ class ConfirmCardSetupData with _$ConfirmCardSetupData {
     /// Either the id of an existing PaymentMethod, or an object containing
     /// data to create a PaymentMethod with.
     /// See the use case sections below for details.
+    @JsonKey(name: "payment_method")
     @PaymentMethodRefConverter()
         PaymentMethodRef<CardPaymentMethodDetails>? paymentMethod,
 
